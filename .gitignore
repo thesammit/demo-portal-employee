@@ -8,7 +8,9 @@
 /bazel-out
 
 # dependencies
-/node_modules
+UI/node_modules
+UI/package-lock.json
+
 
 # profiling files
 chrome-profiler-events*.json
@@ -24,12 +26,12 @@ speed-measure-plugin*.json
 *.sublime-workspace
 
 # IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+UI/.vscode/*
+!UI/.vscode/settings.json
+!UI/.vscode/tasks.json
+!UI/.vscode/launch.json
+!UI/.vscode/extensions.json
+UI/.history/*
 
 # misc
 /.sass-cache
@@ -40,6 +42,35 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+*/nbproject/private/
+*/nbbuild/
+*/dist/
+*/nbdist/
+*/.nb-gradle/
+*/build/
 
 # System Files
 .DS_Store
