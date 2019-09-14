@@ -20,10 +20,6 @@ $employee-portal-theme: mat-light-theme($employee-portal-primary, $employee-port
 @import "./variables";
 @import "./mixins";
 
-html,
-body {
-  height: 100%;
-}
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

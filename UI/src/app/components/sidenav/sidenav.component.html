@@ -1,1 +1,22 @@
-<p>sidenav works!</p>
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #sidenav [mode]="isScreenSmall() ? 'over' : 'side'"
+               [opened]="!isScreenSmall()" class="app-sidenav mat-elevation-z10">
+    <mat-toolbar color="primary">Employee</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item [routerLink]="['list']">
+        <mat-icon mat-list-icon>list</mat-icon>
+        <span matLine>View All</span>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['new']">
+        <mat-icon mat-list-icon>add</mat-icon>
+        <span matLine>Register New</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="main-content">
+    <app-toolbar class="mat-elevation-z10" (toggleSideNav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</mat-sidenav-container>
