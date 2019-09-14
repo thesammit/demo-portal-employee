@@ -39,4 +39,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-To get more help on the Spring Boot go check out the [Help README](https://github.com/thesammit/demo-portal-employee/employee-portal/HELP.md).
+To get more help on the Spring Boot go check out the [Help README](https://github.com/thesammit/demo-portal-employee/blob/master/employee-portal/HELP.md).
