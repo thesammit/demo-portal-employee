@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeBaseComponent implements OnInit {
 
+  title = 'Employee Portal';
+  sideNavTitle = 'Employee';
   constructor() { }
 
   ngOnInit() {
