@@ -6,7 +6,7 @@
 }
 
 .app-sidenav {
-  width: 240px;
+  width: 180px;
 }
 
 .main-content {
@@ -14,8 +14,14 @@
   height: 100%;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: white;
 }
 
 .wrapper {
-  margin: 15px;
+  margin: 20px;
+
+  @media (max-width: 650px) {
+    margin: 5px;
+  }
+
 }

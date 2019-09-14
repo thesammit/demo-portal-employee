@@ -1,1 +1,47 @@
-<p>employee-list works!</p>
+<h1 class="page-title">List of Employees</h1>
+<mat-divider></mat-divider>
+<mat-table class="table" [dataSource]="dataSource" matSort>
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.firstName}} {{employee.lastName}}</mat-cell>
+  </ng-container>
+
+  <!-- Gender Column -->
+  <ng-container matColumnDef="gender">
+    <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.gender}} </mat-cell>
+  </ng-container>
+
+  <!-- DOB Column -->
+  <ng-container matColumnDef="dob">
+    <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.dob | date: 'MMMM dd, yyyy'}} </mat-cell>
+  </ng-container>
+
+  <!-- Department Column -->
+  <ng-container matColumnDef="department">
+    <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.department}} </mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+    <mat-cell *matCellDef="let employee">
+      <button mat-icon-button color="primary">
+        <mat-icon>remove_red_eye</mat-icon>
+      </button>
+      <button mat-icon-button color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<mat-paginator class="pagination" #paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>

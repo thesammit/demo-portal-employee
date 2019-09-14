@@ -1,0 +1,53 @@
+@import '../../../styles/variables';
+
+.page-title {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.mat-header-cell {
+  font-size: 1.1em;
+  color: $table-header;
+  word-break: break-all;
+}
+
+.mat-cell {
+  word-wrap: break-word;
+}
+
+.table {
+  margin-top: 15px;
+  background-color: transparent;
+}
+
+.pagination {
+  margin-top: 5px;
+  background-color: transparent;
+}
+
+mat-table {
+
+  mat-row,
+  mat-header-row,
+  mat-footer-row {
+    padding-left: 24px;
+    padding-right: 24px;
+
+    @media (max-width: 650px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  mat-cell:first-child,
+  mat-footer-cell:first-child,
+  mat-header-cell:first-child {
+    padding-left: 0;
+  }
+
+  mat-cell:last-child,
+  mat-footer-cell:last-child,
+  mat-header-cell:last-child {
+    padding-right: 0;
+  }
+}

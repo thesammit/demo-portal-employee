@@ -12,7 +12,7 @@ export class EmployeeService {
     this.dataStore = { employees: [] };
   }
 
-  getFromDataStore(): IEmployee[] {
+  private getFromDataStore(): IEmployee[] {
     if (!this.dataStore.employees.length) {
       this.dataStore.employees.push({
         employeeId: 1,

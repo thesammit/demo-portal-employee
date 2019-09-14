@@ -5,8 +5,7 @@
   min-width: $largeIconWidth;
   cursor: pointer;
 
-  @media (max-width: 526px) {
-
+  @media (max-width: 650px) {
     display: flex;
     align-items: center;
     justify-content: center;
