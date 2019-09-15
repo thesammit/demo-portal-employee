@@ -31,7 +31,11 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   async populateEmployeeList() {
-    this.availableEmployees = await this.employeeService.getEmployeeList();
+    try {
+      this.availableEmployees = await this.employeeService.getEmployeeList();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   initializeFormFields() {

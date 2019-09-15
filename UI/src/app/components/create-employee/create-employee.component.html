@@ -2,7 +2,7 @@
 <mat-divider></mat-divider>
 <div class="form-container">
   <form class="form" [formGroup]="newEmployeeForm" (ngSubmit)="saveEmployee(newEmployeeForm.value)">
-    <mat-card class="example-card">
+    <mat-card>
       <mat-card-content>
         <mat-form-field hintLabel="This field is Mandatory">
           <input matInput placeholder="First Name" [formControl]="firstName" required>

@@ -1,1 +1,17 @@
-<p>employee-details works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Name: </mat-card-title>
+    <mat-card-subtitle>{{selectedEmployee.firstName}} {{selectedEmployee.lastName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <p>Gender: {{selectedEmployee.gender}}</p>
+      <p>Date of Birth: {{selectedEmployee.dateOfBirth | date}}</p>
+      <p>Department: {{selectedEmployee.department}}</p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Edit</button>
+    <button mat-button>Cancel</button>
+  </mat-card-actions>
+</mat-card>

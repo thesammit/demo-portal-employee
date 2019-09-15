@@ -14,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'list', component: EmployeeListComponent },
+      { path: 'view/:id', component: EmployeeDetailsComponent, canActivate: [EmployeeRouteActivatorService] },
       { path: 'edit/:id', component: EmployeeDetailsComponent, canActivate: [EmployeeRouteActivatorService] },
       { path: 'new', component: CreateEmployeeComponent },
       { path: '**', redirectTo: 'list' }
