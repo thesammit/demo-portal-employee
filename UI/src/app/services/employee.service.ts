@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { IEmployee } from '../models/employee';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class EmployeeService {
 
-  private employees: BehaviorSubject<IEmployee[]>;
   private dataStore: { employees: IEmployee[]; };
 
   constructor() {
@@ -18,14 +16,14 @@ export class EmployeeService {
         employeeId: 1,
         firstName: 'Soham',
         lastName: 'Mitra',
-        dob: new Date(),
+        dateOfBirth: new Date(),
         gender: 'male',
         department: 'Retail'
       }, {
         employeeId: 2,
         firstName: 'Jayita',
         lastName: 'Roy',
-        dob: new Date(),
+        dateOfBirth: new Date(),
         gender: 'female',
         department: 'Investment'
       });
@@ -38,18 +36,34 @@ export class EmployeeService {
   }
 
   getEmployee(employeeId: number): IEmployee {
-    return {} as IEmployee;
+    let employee: IEmployee = null;
+    if (this.dataStore.employees) {
+      employee = this.dataStore.employees.find(emp => emp.employeeId === employeeId);
+    }
+    return employee;
   }
 
-  addEmployee(employee: IEmployee): IEmployee[] {
-    return this.getFromDataStore();
+  addEmployee(employee: IEmployee): void {
+    if (!this.dataStore.employees.find(emp => emp.employeeId === employee.employeeId)) {
+      this.dataStore.employees.push(employee);
+    }
   }
 
-  updateEmployee(employee: IEmployee): IEmployee[] {
-    return this.getFromDataStore();
+  updateEmployee(employee: IEmployee): void {
+    const existingEmployee = this.dataStore.employees.find(emp => emp.employeeId === employee.employeeId);
+    if (existingEmployee) {
+      existingEmployee.firstName = employee.firstName;
+      existingEmployee.lastName = employee.lastName;
+      existingEmployee.gender = employee.gender;
+      existingEmployee.dateOfBirth = employee.dateOfBirth;
+      existingEmployee.department = employee.department;
+    }
   }
 
   deleteEmployee(employeeId: number): IEmployee[] {
+    if (this.dataStore.employees) {
+      this.dataStore.employees = this.dataStore.employees.filter(emp => emp.employeeId !== employeeId);
+    }
     return this.getFromDataStore();
   }
 }

@@ -16,7 +16,7 @@
   <!-- DOB Column -->
   <ng-container matColumnDef="dob">
     <mat-header-cell *matHeaderCellDef> Date of Birth </mat-header-cell>
-    <mat-cell *matCellDef="let employee"> {{employee.dob | date: 'MMMM dd, yyyy'}} </mat-cell>
+    <mat-cell *matCellDef="let employee"> {{employee.dateOfBirth | date: 'MMMM dd, yyyy'}} </mat-cell>
   </ng-container>
 
   <!-- Department Column -->
