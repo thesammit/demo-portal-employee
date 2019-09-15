@@ -15,23 +15,19 @@ import { EmployeeService } from './services/employee.service';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
+import { BackendService } from './services/backend.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EmployeeBaseComponent,
-    EmployeeListComponent,
-    EmployeeDetailsComponent,
-    NotFoundComponent,
-    SidenavComponent,
-    ToolbarComponent,
-    CreateEmployeeComponent
+    AppComponent, EmployeeBaseComponent, EmployeeListComponent, CreateEmployeeComponent,
+    EmployeeDetailsComponent, NotFoundComponent, SidenavComponent, ToolbarComponent,
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, AppRoutingModule,
-    MaterialModule, FormsModule, ReactiveFormsModule
+    MaterialModule, FormsModule, ReactiveFormsModule, HttpClientModule
   ],
-  providers: [EmployeeRouteActivatorService, EmployeeService],
+  providers: [EmployeeRouteActivatorService, EmployeeService, BackendService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

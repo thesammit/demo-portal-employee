@@ -22,8 +22,8 @@ export class EmployeeListComponent implements OnInit {
     this.populateEmployees();
   }
 
-  populateEmployees() {
-    this.employeeList = this.employeeService.getEmployeeList();
+  async populateEmployees() {
+    this.employeeList = await this.employeeService.getEmployeeList();
     this.dataSource = new MatTableDataSource<IEmployee>(this.employeeList);
   }
 

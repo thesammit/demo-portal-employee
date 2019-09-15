@@ -26,8 +26,12 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.availableEmployees = this.employeeService.getEmployeeList();
+    this.populateEmployeeList();
     this.initializeFormFields();
+  }
+
+  async populateEmployeeList() {
+    this.availableEmployees = await this.employeeService.getEmployeeList();
   }
 
   initializeFormFields() {
