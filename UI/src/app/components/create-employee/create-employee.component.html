@@ -19,7 +19,7 @@
           <input matInput [matDatepicker]="picker" placeholder="Birth date" [formControl]="dateOfBirth" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker></mat-datepicker>
-          <mat-hint align="end">Date should be in DD/MM/YYYY format</mat-hint>
+          <mat-hint align="end">Enter date in DD/MM/YYYY format</mat-hint>
           <mat-error *ngIf="dateOfBirth.hasError('required')">Please Enter Birth Date</mat-error>
         </mat-form-field>
 

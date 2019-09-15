@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IEmployee } from '../models/employee';
 import { BackendService } from './backend.service';
+import { SERVER_LOCATION } from '../app.properties';
 
-const SERVER_LOCATION = 'http://localhost:8080/';
 @Injectable()
 export class EmployeeService {
 

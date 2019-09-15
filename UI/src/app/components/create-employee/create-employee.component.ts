@@ -2,11 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IEmployee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { MY_FORMATS } from 'src/app/app.properties';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
-  styleUrls: ['./create-employee.component.scss']
+  styleUrls: ['./create-employee.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }]
 })
 export class CreateEmployeeComponent implements OnInit {
 
@@ -16,11 +22,11 @@ export class CreateEmployeeComponent implements OnInit {
   gender: FormControl;
   dateOfBirth: FormControl;
   department: FormControl;
-  newEmployee: IEmployee;
+  employeeDetails: IEmployee;
   validGenders: string[];
 
   constructor(private employeeService: EmployeeService) {
-    this.newEmployee = {} as IEmployee;
+    this.employeeDetails = {} as IEmployee;
     this.validGenders = ['Male', 'Female', 'I won\'t Answer'];
   }
 
@@ -44,14 +50,31 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   saveEmployee(employee: IEmployee) {
-    this.newEmployee.firstName = employee.firstName;
-    this.newEmployee.lastName = employee.lastName;
-    this.newEmployee.gender = employee.gender;
-    this.newEmployee.dateOfBirth = employee.dateOfBirth;
-    this.newEmployee.department = employee.department;
+    if (!this.newEmployeeForm.invalid && this.isValidEmpolyee(employee)) {
+      this.employeeDetails.firstName = employee.firstName;
+      this.employeeDetails.lastName = employee.lastName;
+      this.employeeDetails.gender = employee.gender;
+      this.employeeDetails.dateOfBirth = employee.dateOfBirth;
+      this.employeeDetails.department = employee.department;
 
-    // this.firstName.setErrors({ invalid: true });
-    this.employeeService.addEmployee(this.newEmployee);
+      // this.firstName.setErrors({ invalid: true });
+      this.employeeService.addEmployee(this.employeeDetails);
+    }
+  }
+
+  isValidEmpolyee(employee: IEmployee): boolean {
+    let isValid = true;
+    const regex = /[0-9]/g;
+    if (employee.firstName.match(regex)) {
+      this.firstName.setErrors({ invalid: true });
+      isValid = false;
+    }
+    if (employee.lastName.match(regex)) {
+      this.lastName.setErrors({ invalid: true });
+      isValid = false;
+    }
+
+    return isValid;
   }
 
 }

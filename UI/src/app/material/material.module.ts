@@ -7,6 +7,7 @@ import {
   MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
   MatSortModule, MatTableModule, MatTabsModule, MatStepperModule
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatMomentDateModule
   ],
   exports: [
     MatAutocompleteModule,
@@ -76,7 +78,8 @@ import {
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatMomentDateModule
   ]
 })
 export class MaterialModule { }

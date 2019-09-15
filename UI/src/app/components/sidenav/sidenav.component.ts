@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
+import { SMALL_BREAKPOINT_WIDTH } from 'src/app/app.properties';
 
-const SMALL_BREAKPOINT_WIDTH = 650;
 
 @Component({
   selector: 'app-sidenav',
