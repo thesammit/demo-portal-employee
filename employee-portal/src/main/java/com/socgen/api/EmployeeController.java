@@ -22,8 +22,13 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@GetMapping(value = "/employees")
-	public ResponseEntity<List<Employee>> getDetails() {
+	public ResponseEntity<List<Employee>> getEmployees() {
 		return new ResponseEntity<List<Employee>>(employeeService.getEmployees(), HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/employee")
+	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+		return new ResponseEntity<Employee>(employeeService.addEmployee(employee), HttpStatus.OK);
 	}
 
 }

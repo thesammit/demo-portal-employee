@@ -18,7 +18,6 @@ export class CreateEmployeeComponent implements OnInit {
   department: FormControl;
   newEmployee: IEmployee;
   validGenders: string[];
-  availableEmployees: IEmployee[];
 
   constructor(private employeeService: EmployeeService) {
     this.newEmployee = {} as IEmployee;
@@ -26,16 +25,7 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.populateEmployeeList();
     this.initializeFormFields();
-  }
-
-  async populateEmployeeList() {
-    try {
-      this.availableEmployees = await this.employeeService.getEmployeeList();
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   initializeFormFields() {
@@ -61,7 +51,6 @@ export class CreateEmployeeComponent implements OnInit {
     this.newEmployee.department = employee.department;
 
     // this.firstName.setErrors({ invalid: true });
-    this.newEmployee.employeeId = this.availableEmployees.length + 1;
     this.employeeService.addEmployee(this.newEmployee);
   }
 

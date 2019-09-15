@@ -22,6 +22,7 @@ export class EmployeeService {
         console.log(error);
       }
     }
+    return this.dataStore.employees;
   }
 
   async getEmployeeList(): Promise<IEmployee[]> {
