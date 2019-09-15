@@ -1,4 +1,4 @@
-package socgen.com.employeeportal;
+package com.socgen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class EmployeePortalApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmployeePortalApplication.class, args);
 	}
-
 }

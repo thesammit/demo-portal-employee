@@ -16,8 +16,7 @@ export class EmployeeService {
     const url = SERVER_LOCATION + 'employees';
     if (!this.dataStore.employees.length) {
       try {
-        const respEmployees = await this.backendService.getMethod(url).toPromise();
-        this.dataStore.employees = respEmployees.json();
+        this.dataStore.employees = await this.backendService.getMethod(url).toPromise();
         return this.dataStore.employees;
       } catch (error) {
         console.log(error);
@@ -74,8 +73,7 @@ export class EmployeeService {
   async deleteEmployee(employeeId: number): Promise<IEmployee[]> {
     const url = SERVER_LOCATION + 'employee';
     try {
-      const respEmployees = await this.backendService.deleteMethod(url).toPromise();
-      const empId = respEmployees.json();
+      const empId = await this.backendService.deleteMethod(url).toPromise();
       if (this.dataStore.employees) {
         this.dataStore.employees = this.dataStore.employees.filter(emp => emp.employeeId !== empId);
       }
