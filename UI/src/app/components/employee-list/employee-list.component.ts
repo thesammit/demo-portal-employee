@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { IEmployee } from 'src/app/models/employee';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,8 +14,9 @@ export class EmployeeListComponent implements OnInit {
   employeeList: IEmployee[];
   displayedColumns: string[];
   dataSource: MatTableDataSource<IEmployee>;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService, private router: Router) {
     this.displayedColumns = ['name', 'gender', 'dob', 'department', 'actions'];
   }
 
@@ -26,6 +28,7 @@ export class EmployeeListComponent implements OnInit {
     try {
       this.employeeList = await this.employeeService.getEmployeeList();
       this.dataSource = new MatTableDataSource<IEmployee>(this.employeeList);
+      this.dataSource.paginator = this.paginator;
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +40,10 @@ export class EmployeeListComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  view(employeeId: number) {
+    this.router.navigate(['employee/view', employeeId]);
   }
 
 }
