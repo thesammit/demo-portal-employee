@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { IEmployee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { MY_FORMATS } from 'src/app/app.properties';
@@ -16,7 +16,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 })
 export class CreateEmployeeComponent implements OnInit {
 
-  newEmployeeForm: FormGroup;
+  employeeForm: FormGroup;
   firstName: FormControl;
   lastName: FormControl;
   gender: FormControl;
@@ -27,7 +27,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) {
     this.employeeDetails = {} as IEmployee;
-    this.validGenders = ['Male', 'Female', 'I won\'t Answer'];
+    this.validGenders = ['Male', 'Female', 'I would not Disclose'];
   }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class CreateEmployeeComponent implements OnInit {
     this.gender = new FormControl('', [Validators.required]);
     this.dateOfBirth = new FormControl('', [Validators.required]);
     this.department = new FormControl('', [Validators.required]);
-    this.newEmployeeForm = new FormGroup({
+    this.employeeForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
       gender: this.gender,
@@ -49,8 +49,8 @@ export class CreateEmployeeComponent implements OnInit {
     });
   }
 
-  saveEmployee(employee: IEmployee) {
-    if (!this.newEmployeeForm.invalid && this.isValidEmpolyee(employee)) {
+  saveEmployee(employee: IEmployee, formDirective: FormGroupDirective) {
+    if (!this.employeeForm.invalid && this.isValidEmpolyee(employee)) {
       this.employeeDetails.firstName = employee.firstName;
       this.employeeDetails.lastName = employee.lastName;
       this.employeeDetails.gender = employee.gender;
@@ -59,12 +59,14 @@ export class CreateEmployeeComponent implements OnInit {
 
       // this.firstName.setErrors({ invalid: true });
       this.employeeService.addEmployee(this.employeeDetails);
+      formDirective.resetForm();
+      this.employeeForm.reset();
     }
   }
 
   isValidEmpolyee(employee: IEmployee): boolean {
     let isValid = true;
-    const regex = /[0-9]/g;
+    const regex = /[^a-zA-Z]+/g;
     if (employee.firstName.match(regex)) {
       this.firstName.setErrors({ invalid: true });
       isValid = false;
