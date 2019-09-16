@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IEmployee } from '../models/employee';
 import { BackendService } from './backend.service';
 import { SERVER_LOCATION } from '../app.properties';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class EmployeeService {
@@ -46,8 +47,8 @@ export class EmployeeService {
           throw new Error('Employee Id is present! try Editing');
         }
       },
-      error => {
-        console.log(error);
+      (error: HttpErrorResponse) => {
+        console.error(error.message, error.status, error.statusText);
       }
     );
   }
@@ -65,8 +66,8 @@ export class EmployeeService {
           existingEmployee.department = response.department;
         }
       },
-      error => {
-        console.log(error);
+      (error: HttpErrorResponse) => {
+        console.error(error.message, error.status, error.statusText);
       }
     );
   }
@@ -74,13 +75,13 @@ export class EmployeeService {
   async deleteEmployee(employeeId: number): Promise<IEmployee[]> {
     const url = SERVER_LOCATION + 'employee/' + employeeId;
     try {
-      const empId = await this.backendService.deleteMethod(url).toPromise();
+      const employee: IEmployee = await this.backendService.deleteMethod(url).toPromise();
       if (this.dataStore.employees) {
-        this.dataStore.employees = this.dataStore.employees.filter(emp => emp.employeeId !== empId);
+        this.dataStore.employees = this.dataStore.employees.filter(emp => emp.employeeId !== employee.employeeId);
       }
       return this.dataStore.employees;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

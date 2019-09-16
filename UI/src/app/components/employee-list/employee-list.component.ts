@@ -27,16 +27,21 @@ export class EmployeeListComponent implements OnInit {
   async populateEmployees() {
     try {
       this.employeeList = await this.employeeService.getEmployeeList();
-      this.dataSource = new MatTableDataSource<IEmployee>(this.employeeList);
-      this.dataSource.paginator = this.paginator;
+      this.updateTableData();
     } catch (error) {
       console.log(error);
     }
   }
 
+  private updateTableData() {
+    this.dataSource = new MatTableDataSource<IEmployee>(this.employeeList);
+    this.dataSource.paginator = this.paginator;
+  }
+
   async delete(employeeId: number) {
     try {
       this.employeeList = await this.employeeService.deleteEmployee(employeeId);
+      this.updateTableData();
     } catch (error) {
       console.log(error);
     }
