@@ -5,6 +5,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { MY_FORMATS } from 'src/app/app.properties';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-employee',
@@ -25,21 +26,28 @@ export class CreateEmployeeComponent implements OnInit {
   employeeDetails: IEmployee;
   validGenders: string[];
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) {
     this.employeeDetails = {} as IEmployee;
     this.validGenders = ['Male', 'Female', 'I would not Disclose'];
   }
 
   ngOnInit() {
-    this.initializeFormFields();
+    this.route.url.subscribe(urlSegments => {
+      if (urlSegments[0].path === 'new') {
+        this.initializeFormFields();
+      } else if (urlSegments[0].path === 'edit') {
+        this.employeeDetails = this.employeeService.getEmployee(+urlSegments[1].path);
+        this.initializeFormFields();
+      }
+    });
   }
 
   initializeFormFields() {
-    this.firstName = new FormControl('', [Validators.required]);
-    this.lastName = new FormControl('', [Validators.required]);
-    this.gender = new FormControl('', [Validators.required]);
-    this.dateOfBirth = new FormControl('', [Validators.required]);
-    this.department = new FormControl('', [Validators.required]);
+    this.firstName = new FormControl(this.employeeDetails.firstName, [Validators.required]);
+    this.lastName = new FormControl(this.employeeDetails.lastName, [Validators.required]);
+    this.gender = new FormControl(this.employeeDetails.gender, [Validators.required]);
+    this.dateOfBirth = new FormControl(this.employeeDetails.dateOfBirth, [Validators.required]);
+    this.department = new FormControl(this.employeeDetails.department, [Validators.required]);
     this.employeeForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,

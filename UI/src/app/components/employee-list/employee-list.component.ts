@@ -51,4 +51,9 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['employee/view', employeeId]);
   }
 
+  edit(employeeId: number) {
+    debugger
+    this.router.navigate(['employee/edit', employeeId]);
+  }
+
 }

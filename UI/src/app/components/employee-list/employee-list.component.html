@@ -32,7 +32,7 @@
       <button mat-icon-button color="primary" (click)="view(employee.employeeId)">
         <mat-icon>remove_red_eye</mat-icon>
       </button>
-      <button mat-icon-button color="primary" [routerLink]="['/edit', employee.employeeId]">
+      <button mat-icon-button color="primary" (click)="edit(employee.employeeId)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" (click)="delete(employee.employeeId)">
