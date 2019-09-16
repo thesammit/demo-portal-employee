@@ -1,4 +1,4 @@
-<h1 class="page-title">Register a New Employee</h1>
+<h1 class="page-title">{{title}}</h1>
 <mat-divider></mat-divider>
 <div class="form-container">
   <form class="form" [formGroup]="employeeForm" #formDir="ngForm"
@@ -42,7 +42,7 @@
       <mat-divider></mat-divider>
       <mat-card-actions>
         <button mat-raised-button type="submit" color="primary">Save</button>
-        <button mat-raised-button type="reset" color="primary">Cancel</button>
+        <button mat-raised-button type="reset" color="primary" (click)="cancel()">Cancel</button>
       </mat-card-actions>
     </mat-card>
   </form>

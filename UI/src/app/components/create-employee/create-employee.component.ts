@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
 import { IEmployee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { MY_FORMATS } from 'src/app/app.properties';
+import { MY_FORMATS, REGISTER_TITLE, EDIT_TITLE } from 'src/app/app.properties';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-employee',
@@ -25,8 +25,9 @@ export class CreateEmployeeComponent implements OnInit {
   department: FormControl;
   employeeDetails: IEmployee;
   validGenders: string[];
+  title: string;
 
-  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) {
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private router: Router) {
     this.employeeDetails = {} as IEmployee;
     this.validGenders = ['Male', 'Female', 'I would not Disclose'];
   }
@@ -35,9 +36,11 @@ export class CreateEmployeeComponent implements OnInit {
     this.route.url.subscribe(urlSegments => {
       if (urlSegments[0].path === 'new') {
         this.initializeFormFields();
+        this.title = REGISTER_TITLE;
       } else if (urlSegments[0].path === 'edit') {
         this.employeeDetails = this.employeeService.getEmployee(+urlSegments[1].path);
         this.initializeFormFields();
+        this.title = EDIT_TITLE;
       }
     });
   }
@@ -85,6 +88,12 @@ export class CreateEmployeeComponent implements OnInit {
     }
 
     return isValid;
+  }
+
+  cancel() {
+    if (this.employeeDetails.employeeId) {
+      this.router.navigate(['employee/list']);
+    }
   }
 
 }
