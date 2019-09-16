@@ -35,7 +35,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Build API
 
-Run `java -jar target/employee-portal-0.0.1-SNAPSHOT.jar` to build the jar file in target folder. Otherwise, u can just run `mvn clean install` to create the jar which will also be present in target folder.
+Run `java -jar target/employee-portal-0.0.1-SNAPSHOT.jar` to build the jar file in target folder. Otherwise, you can just run `mvn clean install` to create the jar which will also be present in target folder.
 
 ## Running unit tests
 
