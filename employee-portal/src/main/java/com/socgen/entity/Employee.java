@@ -10,23 +10,18 @@ public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long employeeId;
-
+	private Integer employeeId;
 	private String firstName;
-
 	private String lastName;
-
 	private String gender;
-
 	private String dateOfBirth;
-
 	private String department;
 
-	public Long getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
 

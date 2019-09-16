@@ -1,24 +1,22 @@
 package com.socgen.dto;
 
-public class EmployeeDTO {
+import java.io.Serializable;
 
-	private Long employeeId;
+public class EmployeeDTO implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	private Integer employeeId;
 	private String firstName;
-
 	private String lastName;
-
 	private String gender;
-
 	private String dateOfBirth;
-
 	private String department;
 
-	public Long getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
 

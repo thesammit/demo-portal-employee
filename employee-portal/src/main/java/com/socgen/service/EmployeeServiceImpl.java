@@ -1,10 +1,13 @@
 package com.socgen.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.socgen.dto.EmployeeDTO;
 import com.socgen.entity.Employee;
 import com.socgen.repository.EmployeeRepository;
 
@@ -15,12 +18,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepo;
 	
 	@Override
-	public List<Employee> getEmployees() {
-		return employeeRepo.findAll();
+	public List<EmployeeDTO> getEmployees() {
+		List<Employee> employees = employeeRepo.findAll();
+		List<EmployeeDTO> employeeList = new ArrayList<>();
+		employees.forEach(emp -> {
+			EmployeeDTO emplDTO = new EmployeeDTO();
+			BeanUtils.copyProperties(emp, emplDTO);
+			employeeList.add(emplDTO);
+		});
+		
+		return employeeList;
 	}
 	
 	@Override
-	public Employee addEmployee(Employee employee) {
-		return employeeRepo.save(employee);
+	public EmployeeDTO addAndUpdateEmployee(EmployeeDTO employeeData) {
+		Employee employee = new Employee();
+		BeanUtils.copyProperties(employeeData, employee);
+		employee = employeeRepo.save(employee);
+		BeanUtils.copyProperties(employee, employeeData);
+		return employeeData;
+	}
+
+	@Override
+	public EmployeeDTO deleteEmployee(Integer employeeId) {
+		try {
+			Employee employee = employeeRepo.getOne(employeeId);
+			EmployeeDTO emplDTO = new EmployeeDTO();
+			BeanUtils.copyProperties(employee, emplDTO);
+			employeeRepo.deleteById(employeeId);
+			return emplDTO;
+		} catch(IllegalArgumentException ex) {
+			ex.getMessage();
+			return null;			
+		}
 	}
 }

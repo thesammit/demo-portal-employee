@@ -2,9 +2,10 @@ package com.socgen.service;
 
 import java.util.List;
 
-import com.socgen.entity.Employee;
+import com.socgen.dto.EmployeeDTO;
 
 public interface EmployeeService {
-	public Employee addEmployee(Employee employee);
-	public List<Employee> getEmployees();
+	public EmployeeDTO addAndUpdateEmployee(EmployeeDTO employee);
+	public List<EmployeeDTO> getEmployees();
+	public EmployeeDTO deleteEmployee(Integer employeeId);
 }
