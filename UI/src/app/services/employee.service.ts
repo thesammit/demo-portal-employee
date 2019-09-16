@@ -72,7 +72,7 @@ export class EmployeeService {
   }
 
   async deleteEmployee(employeeId: number): Promise<IEmployee[]> {
-    const url = SERVER_LOCATION + 'employee';
+    const url = SERVER_LOCATION + 'employee/' + employeeId;
     try {
       const empId = await this.backendService.deleteMethod(url).toPromise();
       if (this.dataStore.employees) {
