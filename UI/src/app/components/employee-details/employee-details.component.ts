@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { IEmployee } from 'src/app/models/employee';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-details',
@@ -12,17 +12,20 @@ export class EmployeeDetailsComponent implements OnInit {
 
   selectedEmployee: IEmployee;
   employeeId: number;
-  constructor(private employeeService: EmployeeService, private route: ActivatedRoute) { }
+  constructor(private employeeService: EmployeeService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.employeeId = +params.id;
-      this.populateData();
+      this.selectedEmployee = this.employeeService.getEmployee(this.employeeId);
     });
   }
 
-  populateData() {
-    this.selectedEmployee = this.employeeService.getEmployee(this.employeeId);
+  edit() {
+    this.router.navigate(['employee/edit', this.employeeId]);
   }
 
+  back() {
+    this.router.navigate(['employee/list']);
+  }
 }

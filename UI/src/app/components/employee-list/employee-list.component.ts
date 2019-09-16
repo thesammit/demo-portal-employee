@@ -52,7 +52,6 @@ export class EmployeeListComponent implements OnInit {
   }
 
   edit(employeeId: number) {
-    debugger
     this.router.navigate(['employee/edit', employeeId]);
   }
 
