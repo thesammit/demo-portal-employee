@@ -1,14 +1,10 @@
+
 # Employee Portal
 ### Employee portal App with two basic functionalities
 
 ##### UI Details
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version **_8.3.3_**. It is the basic implementation of Employee portal.
-
-[![dependencies Status](https://david-dm.org/thesammit/demo-portal-employee/status.svg)][david-badge-url]
-[![devDependencies Status](https://david-dm.org/thesammit/demo-portal-employee/dev-status.svg)][david-dev-badge-url]
-
-[david-badge-url]: https://david-dm.org/thesammit/demo-portal-employee
-[david-dev-badge-url]: https://david-dm.org/thesammit/demo-portal-employee?type=dev
+Check the Angular dependencies used in this project [here](https://github.com/thesammit/demo-portal-employee/blob/master/UI/package.json).
 
 ##### Backend Server Details
 The Backend server is built with [Spring Boot](https://github.com/spring-projects/spring-boot) version **_2.1.8_**. Java 8 is used as platform to run the API. Application scaffold-ed from `https://start.spring.io/`
@@ -17,23 +13,34 @@ The Backend server is built with [Spring Boot](https://github.com/spring-project
 
 #### UI
 
-Install Node.js LTS version to run the application. Then to prepare the Angular environment then reach to Application Path.
+Install [Node.js](https://nodejs.org/en/) LTS version to run the application. After installation, reach to the git folder location of Application Path "`{application_path}`" to prepare the Angular environment.
 
-Then, run the commands, first `{application_path}:/> cd ./UI` then `npm install`
+Then, run the commands in order, 
+1. `{application_path}:/> cd ./UI` 
+2. `npm install`
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` to start the dev server. 
+Open browser and go to`http://localhost:4200/`. 
 
 #### API Server
+First reach to path `{application_path}` and 
+Run `mvn clean install` to build the Spring Boot server. 
+Finally run `mvn spring-boot:run` to start the API.
 
-Run `mvn install` and then `java -jar target/employee-portal-0.0.1-SNAPSHOT.jar` to build the Spring Boot server. Finally run `mvn spring-boot:run` to start the API.
+*Note: First Start the API server and then start the UI server.*
 
 ## Build UI
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
+## Build API
+
+Run `java -jar target/employee-portal-0.0.1-SNAPSHOT.jar` to build the jar file in target folder. Otherwise, you can just run `mvn clean install` to create the jar which will also be present in target folder.
+
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+For UI, Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+For APIs `mvn clean install` will run the test cases.
 
 ## Further help
 
