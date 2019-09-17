@@ -1,0 +1,16 @@
+[{
+  "employeeId": 1,
+  "firstName": "Test1",
+  "lastName": "User1",
+  "gender": "Male",
+  "dateOfBirth": "1988-12-11T18:30:00.000Z",
+  "department": "IT"
+},
+{
+  "employeeId": 2,
+  "firstName": "Test2",
+  "lastName": "User2",
+  "gender": "Male",
+  "dateOfBirth": "1988-12-11T18:30:00.000Z",
+  "department": "HR"
+}]
