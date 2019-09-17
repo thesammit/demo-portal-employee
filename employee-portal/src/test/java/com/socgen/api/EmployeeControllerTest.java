@@ -2,7 +2,7 @@ package com.socgen.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -19,7 +19,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -48,7 +47,7 @@ public class EmployeeControllerTest {
 	private List<EmployeeDTO> emp;
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
-	private String strJson;
+	private String requestResponseString;
 
 	@Before
 	public void setup() throws Exception {
@@ -56,7 +55,7 @@ public class EmployeeControllerTest {
 		ObjectMapper mapper = new ObjectMapper();
 		emp = mapper.readValue(new FileInputStream(employeeJson), new TypeReference<List<EmployeeDTO>>(){});
 
-		strJson = mapper.writeValueAsString(emp.get(0));
+		requestResponseString = mapper.writeValueAsString(emp.get(0));
 	}
 
 	@Test
@@ -78,11 +77,11 @@ public class EmployeeControllerTest {
 		when(employeeService.addAndUpdateEmployee(any(EmployeeDTO.class))).thenReturn(empDto);
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.post("/employee").accept(MediaType.APPLICATION_JSON)
-				.content(strJson).contentType(MediaType.APPLICATION_JSON);
+				.content(requestResponseString).contentType(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn(); 
 		MockHttpServletResponse response = result.getResponse();
 
-		assertEquals(strJson, response.getContentAsString());
+		assertEquals(requestResponseString, response.getContentAsString());
 	}
 	
 	@Test
@@ -91,11 +90,11 @@ public class EmployeeControllerTest {
 		when(employeeService.addAndUpdateEmployee(any(EmployeeDTO.class))).thenReturn(empDto);
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.put("/employee").accept(MediaType.APPLICATION_JSON)
-				.content(strJson).contentType(MediaType.APPLICATION_JSON);
+				.content(requestResponseString).contentType(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn(); 
 		MockHttpServletResponse response = result.getResponse();
 
-		assertEquals(strJson, response.getContentAsString());
+		assertEquals(requestResponseString, response.getContentAsString());
 	}
 	
 	@Test
@@ -104,10 +103,10 @@ public class EmployeeControllerTest {
 		when(employeeService.deleteEmployee(any())).thenReturn(empDto);
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/employee/1").accept(MediaType.APPLICATION_JSON)
-				.content(strJson).contentType(MediaType.APPLICATION_JSON);
+				.content(requestResponseString).contentType(MediaType.APPLICATION_JSON);
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn(); 
 		MockHttpServletResponse response = result.getResponse();
 
-		assertEquals(strJson, response.getContentAsString());
+		assertEquals(requestResponseString, response.getContentAsString());
 	}	
 }
