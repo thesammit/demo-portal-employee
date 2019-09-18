@@ -3,6 +3,7 @@ import { IEmployee } from '../models/employee';
 import { BackendService } from './backend.service';
 import { SERVER_LOCATION } from '../app.properties';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class EmployeeService {
@@ -13,21 +14,15 @@ export class EmployeeService {
     this.dataStore = { employees: [] };
   }
 
-  private async getFromDataStore(): Promise<IEmployee[]> {
+  getEmployees(): Observable<IEmployee[]> {
     const url = SERVER_LOCATION + 'employees';
-    if (!this.dataStore.employees.length) {
-      try {
-        this.dataStore.employees = await this.backendService.getMethod(url).toPromise();
-        return this.dataStore.employees;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    return this.dataStore.employees;
+    const empListObservable: Observable<IEmployee[]> = this.backendService.getMethod(url);
+    this.storeEmployees(empListObservable);
+    return empListObservable;
   }
 
-  async getEmployeeList(): Promise<IEmployee[]> {
-    return await this.getFromDataStore();
+  async storeEmployees(empListObservable: Observable<IEmployee[]>) {
+    this.dataStore.employees = await empListObservable.toPromise();
   }
 
   getEmployee(employeeId: number): IEmployee {
@@ -43,8 +38,6 @@ export class EmployeeService {
       response => {
         if (!this.dataStore.employees.find(emp => emp.employeeId === response.employeeId)) {
           this.dataStore.employees.push(response);
-        } else {
-          throw new Error('Employee Id is present! try Editing');
         }
       },
       (error: HttpErrorResponse) => {

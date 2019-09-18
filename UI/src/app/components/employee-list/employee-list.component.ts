@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { IEmployee } from 'src/app/models/employee';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,7 +16,7 @@ export class EmployeeListComponent implements OnInit {
   dataSource: MatTableDataSource<IEmployee>;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  constructor(private employeeService: EmployeeService, private router: Router) {
+  constructor(private employeeService: EmployeeService, private router: Router, private route: ActivatedRoute) {
     this.displayedColumns = ['name', 'gender', 'dob', 'department', 'actions'];
   }
 
@@ -26,7 +26,7 @@ export class EmployeeListComponent implements OnInit {
 
   async populateEmployees() {
     try {
-      this.employeeList = await this.employeeService.getEmployeeList();
+      this.employeeList = this.route.snapshot.data.employeeList as IEmployee[];
       this.updateTableData();
     } catch (error) {
       console.log(error);

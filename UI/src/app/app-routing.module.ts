@@ -6,6 +6,7 @@ import { EmployeeDetailsComponent } from './components/employee-details/employee
 import { EmployeeRouteActivatorService } from './services/employee-route-activator.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
+import { EmployeeListResolverService } from './services';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: 'view/:id', component: EmployeeDetailsComponent, canActivate: [EmployeeRouteActivatorService] },
       { path: 'edit/:id', component: CreateEmployeeComponent, canActivate: [EmployeeRouteActivatorService] },
-      { path: 'list', component: EmployeeListComponent },
+      { path: 'list', component: EmployeeListComponent, resolve: { employeeList: EmployeeListResolverService } },
       { path: 'new', component: CreateEmployeeComponent },
       { path: '**', redirectTo: 'list' }
     ]
