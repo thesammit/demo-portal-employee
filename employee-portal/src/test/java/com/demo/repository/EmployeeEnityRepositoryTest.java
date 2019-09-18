@@ -1,4 +1,4 @@
-package com.socgen.repository;
+package com.demo.repository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,10 +16,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
 
+import com.demo.entity.Employee;
+import com.demo.repository.EmployeeRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.socgen.entity.Employee;
-import com.socgen.repository.EmployeeRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

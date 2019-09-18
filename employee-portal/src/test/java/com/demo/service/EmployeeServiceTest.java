@@ -1,4 +1,4 @@
-package com.socgen.service;
+package com.demo.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -19,11 +19,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
 
+import com.demo.dto.EmployeeDTO;
+import com.demo.entity.Employee;
+import com.demo.repository.EmployeeRepository;
+import com.demo.service.EmployeeService;
+import com.demo.service.EmployeeServiceImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.socgen.dto.EmployeeDTO;
-import com.socgen.entity.Employee;
-import com.socgen.repository.EmployeeRepository;
 
 @RunWith(SpringRunner.class)
 public class EmployeeServiceTest {

@@ -1,4 +1,4 @@
-package com.socgen.api;
+package com.demo.api;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.socgen.dto.EmployeeDTO;
-import com.socgen.service.EmployeeService;
+import com.demo.dto.EmployeeDTO;
+import com.demo.service.EmployeeService;
 
 @CrossOrigin
 @RestController

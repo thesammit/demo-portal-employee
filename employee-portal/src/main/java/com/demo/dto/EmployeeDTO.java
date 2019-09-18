@@ -1,4 +1,4 @@
-package com.socgen.dto;
+package com.demo.dto;
 
 import java.io.Serializable;
 

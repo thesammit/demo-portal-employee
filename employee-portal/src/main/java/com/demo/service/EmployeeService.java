@@ -1,8 +1,8 @@
-package com.socgen.service;
+package com.demo.service;
 
 import java.util.List;
 
-import com.socgen.dto.EmployeeDTO;
+import com.demo.dto.EmployeeDTO;
 
 public interface EmployeeService {
 	public EmployeeDTO addAndUpdateEmployee(EmployeeDTO employee);

@@ -1,4 +1,4 @@
-package com.socgen.entity;
+package com.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

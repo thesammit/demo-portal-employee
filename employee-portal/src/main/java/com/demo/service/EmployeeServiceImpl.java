@@ -1,4 +1,4 @@
-package com.socgen.service;
+package com.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.socgen.dto.EmployeeDTO;
-import com.socgen.entity.Employee;
-import com.socgen.repository.EmployeeRepository;
+import com.demo.dto.EmployeeDTO;
+import com.demo.entity.Employee;
+import com.demo.repository.EmployeeRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {

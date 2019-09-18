@@ -1,4 +1,4 @@
-package com.socgen.api;
+package com.demo.api;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
@@ -32,10 +32,11 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.ResourceUtils;
 
+import com.demo.api.EmployeeController;
+import com.demo.dto.EmployeeDTO;
+import com.demo.service.EmployeeService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.socgen.dto.EmployeeDTO;
-import com.socgen.service.EmployeeService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = EmployeeController.class)
