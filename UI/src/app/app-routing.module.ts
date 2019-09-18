@@ -1,13 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmployeeBaseComponent } from './components/employee-base/employee-base.component';
-import { EmployeeListComponent } from './components/employee-list/employee-list.component';
-import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
-import { EmployeeRouteActivatorService } from './services/employee-route-activator.service';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
-import { EmployeeListResolverService } from './services';
-
+import {
+  EmployeeBaseComponent, EmployeeListComponent, EmployeeDetailsComponent, NotFoundComponent, CreateEmployeeComponent
+} from './components';
+import { EmployeeListResolverService, EmployeeRouteActivatorService } from './services';
 
 const routes: Routes = [
   {
