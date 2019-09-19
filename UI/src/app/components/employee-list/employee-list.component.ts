@@ -24,7 +24,7 @@ export class EmployeeListComponent implements OnInit {
     this.populateEmployees();
   }
 
-  async populateEmployees() {
+  populateEmployees() {
     try {
       this.employeeList = this.route.snapshot.data.employeeList as IEmployee[];
       this.updateTableData();
