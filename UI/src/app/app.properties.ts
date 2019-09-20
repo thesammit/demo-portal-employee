@@ -10,6 +10,7 @@ export const MY_FORMATS = {
   },
 };
 export const SMALL_BREAKPOINT_WIDTH = 650;
-export const SERVER_LOCATION = 'http://localhost:8080/';
 export const REGISTER_TITLE = 'Register New Employee';
 export const EDIT_TITLE = 'Edit Selected Employee';
+
+export const SERVER_LOCATION = 'http://localhost:8080/';
